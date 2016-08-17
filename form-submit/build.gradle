@@ -29,7 +29,11 @@ buildscript {
 						    compile("org.springframework.boot:spring-boot-starter-web") {
 						            exclude module: "spring-boot-starter-tomcat"
 							        }
+									compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 								    compile("org.springframework.boot:spring-boot-starter-jetty")
+									compile("org.springframework.boot:spring-boot-starter-social-twitter")
+									compile("org.webjars:materializecss:0.96.0")
+									compile("org.webjars:jquery:2.1.4")
 								        // end::jetty[]
 									    // tag::actuator[]
 									        compile("org.springframework.boot:spring-boot-starter-actuator")

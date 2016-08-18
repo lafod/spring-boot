@@ -1,7 +1,7 @@
-# gradle
-.gradle
-build
+
+.gradle/
+build/
 #eclipse
-.classpath
-.settings
+.classpath/
+.settings/
 /bin/

@@ -5,6 +5,9 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,13 +15,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import formsubmit.domain.ProfileForm;
+import formsubmit.domain.UserProfileSession;
 import formsubmit.formatter.USLocalDateFormatter;
 
 @Controller
 public class ProfileController {
-
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	private UserProfileSession userProfileSession;
+    
+	@Autowired
+    public ProfileController(UserProfileSession userProfileSession) {
+        this.userProfileSession = userProfileSession;
+    }
+	
+	@ModelAttribute
+    public ProfileForm getProfileForm() {
+        return userProfileSession.toForm();
+    }
+	
 	@RequestMapping("/profile")
 	public String displayProfile(ProfileForm profileForm) {
+		logger.info("displaying profile page");
 		return "profile/profilePage";
 	}
 
@@ -27,8 +45,11 @@ public class ProfileController {
 		if (bindingResult.hasErrors()) {
 	        return "profile/profilePage";
 	    }
-		System.out.println("save ok" + profileForm);
-		return "redirect:/profile";
+		userProfileSession.saveForm(profileForm);
+		final String keywords = String.join(",",profileForm.getTastes() );
+		
+		return "redirect:search/mixed;keywords="+keywords;
+		//return "redirect:/profile";
 	}
 	@RequestMapping(value = "/profile", params = {"addTaste"})
     public String addRow(ProfileForm profileForm) {

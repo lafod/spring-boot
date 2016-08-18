@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+<include resource="org/springframework/boot/logging/logback/base.xml"/>
+ <appender name="controllers.log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>controllers.0.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover into archive directory with compression -->
+            <fileNamePattern>logs/archive/%d{yyyyMMdd}/controllers.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <encoder>
+            <pattern>[%date{EE MMM dd HH:mm:ss.SSS}] [%thread] - %msg%n</pattern>
+        </encoder>
+    </appender>
+<logger name="formsubmit.controllers" level="DEBUG" additivity="false">	
+	<appender-ref ref="controllers.log"/>
+</logger>
+</configuration>
+
+

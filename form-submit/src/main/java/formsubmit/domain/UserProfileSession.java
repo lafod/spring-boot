@@ -49,5 +49,6 @@ public class UserProfileSession implements Serializable {
 	public Resource getprofilePicture(){
 		return profilePicture == null ? null : new UrlResource(profilePicture);
 	}	
+	
 
 }

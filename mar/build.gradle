@@ -1,0 +1,52 @@
+buildscript {
+    repositories {
+            mavenCentral()
+	        }
+		    dependencies {
+		            classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+			        }
+				}
+
+				apply plugin: 'java'
+				apply plugin: 'eclipse'
+				apply plugin: 'idea'
+				apply plugin: 'spring-boot'
+
+				jar {
+				    baseName = 'mar-spring-boot'
+				        version =  '0.1.0'
+					}
+
+					repositories {
+					    mavenCentral()
+					    }
+
+					    sourceCompatibility = 1.8
+					    targetCompatibility = 1.8
+
+					    dependencies {
+					        // tag::jetty[]
+						    compile("org.springframework.boot:spring-boot-starter-web") {
+						            exclude module: "spring-boot-starter-tomcat"
+							        }
+									compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+									compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity3:3.0.0.RELEASE")
+								    compile("org.springframework.boot:spring-boot-starter-jetty")									
+									compile("org.webjars:materializecss:0.96.0")
+									compile("org.webjars:jquery:2.1.4")
+									compile("org.springframework.boot:spring-boot-starter-security")
+								        // end::jetty[]
+									    // tag::actuator[]
+									        compile("org.springframework.boot:spring-boot-starter-actuator")
+										    // end::actuator[]
+										        testCompile("junit:junit")
+												testCompile("org.springframework.boot:spring-boot-starter-test")
+											}
+
+											task wrapper(type: Wrapper) {
+											    gradleVersion = '2.3'
+											    }
+
+
+
+

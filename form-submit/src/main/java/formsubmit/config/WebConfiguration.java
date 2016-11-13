@@ -20,7 +20,7 @@ import org.springframework.web.util.UrlPathHelper;
 import formsubmit.formatter.USLocalDateFormatter;
 
 @Configuration
-@EnableConfigurationProperties({PictureUploadProperties.class})
+@EnableConfigurationProperties({PictureUploadProperties.class,SSLConfigProperties.class})
 public class WebConfiguration extends WebMvcConfigurerAdapter {
 	@Override
 	public void addFormatters(FormatterRegistry registry) {

@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import formsubmit.service.SearchService;
+import formsubmit.service.TwitterSearch;
 
 @Controller
 public class SearchController {
-	private SearchService searchService;
+	private TwitterSearch searchService;
     @Autowired
-    public SearchController(SearchService searchService) {
+    public SearchController(TwitterSearch searchService) {
         this.searchService = searchService;
     }
 

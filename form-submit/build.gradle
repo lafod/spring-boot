@@ -30,6 +30,7 @@ buildscript {
 						            exclude module: "spring-boot-starter-tomcat"
 							        }
 									compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+									compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity3:3.0.0.RELEASE")
 								    compile("org.springframework.boot:spring-boot-starter-jetty")
 									compile("org.springframework.boot:spring-boot-starter-social-twitter")
 									compile("org.webjars:materializecss:0.96.0")
